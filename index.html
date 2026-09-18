@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя Визитка</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: #f4f4f6; color: #111; display: flex; justify-content: center; padding: 20px; transition: background 0.3s; }
+        .container { max-width: 480px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Стили визитки */
+        .avatar { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-top: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); background: #ddd; }
+        h1 { font-size: 22px; margin-top: 15px; font-weight: 700; }
+        .bio { font-size: 15px; margin: 10px 20px 25px 20px; opacity: 0.8; line-height: 1.4; }
+        
+        /* Кнопки */
+        .links-area { width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .btn { width: 100%; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 16px; background: #fff; color: #111; box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .btn:active { transform: scale(0.98); }
+        
+        /* Портфолио */
+        .portfolio-title { font-size: 18px; font-weight: 700; margin-bottom: 15px; align-self: flex-start; padding-left: 5px; }
+        .gallery { width: 100%; display: flex; flex-direction: column; gap: 15px; }
+        .gallery img { width: 100%; border-radius: 16px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.05); background: #eee; }
+        
+        /* Скелетон загрузки */
+        .loading { opacity: 0.5; pointer-events: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container loading" id="app">
+        <img id="avatar" class="avatar" src="" alt="Avatar" style="display:none;">
+        <h1 id="name">Загрузка...</h1>
+        <p id="bio" class="bio"></p>
+
+        <div class="links-area">
+            <a id="whatsapp" class="btn" href="#" style="display:none;">💬 Написать в WhatsApp</a>
+            <a id="telegram" class="btn" href="#" style="display:none;">✈️ Наш Telegram</a>
+        </div>
+
+        <h2 id="port-title" class="portfolio-title" style="display:none;">Портфолио</h2>
+        <div id="gallery" class="gallery"></div>
+    </div>
+
+    <script>
+        // СЮДА ВСТАВЬТЕ ID СВОЕЙ ТАБЛИЦЫ
+        const SPREADSHEET_ID = '1XF3E_4_VPrrz6lujOa4v4Hdvg8wQQWVxo2YwRZ1sHF0'; 
+        
+        // Ссылка для получения данных в формате JSON
+        const url = `https://google.com{SPREADSHEET_ID}/gviz/tq?tqx=out:json`;
+
+        fetch(url)
+            .then(res => res.text())
+            .then(data => {
+                // Очищаем лишний текст от Google API, чтобы получить чистый JSON
+                const jsonString = data.substring(47, data.length - 2);
+                const json = JSON.parse(jsonString);
+                
+                // Переводим строки таблицы в удобный объект (ключ: значение)
+                const config = {};
+                const photos = [];
+                
+                json.table.rows.forEach(row => {
+                    const key = row.c[0] ? row.c[0].v : null;
+                    const value = row.c[1] ? row.c[1].v : '';
+                    if (key) {
+                        if (key.startsWith('photo_') && value) {
+                            photos.push(value);
+                        } else {
+                            config[key] = value;
+                        }
+                    }
+                });
+
+                // Применяем данные на страницу
+                if(config.bg_color) document.body.style.backgroundColor = config.bg_color;
+                if(config.text_color) document.body.style.color = config.text_color;
+                
+                document.getElementById('name').innerText = config.name || 'Без имени';
+                document.getElementById('bio').innerText = config.bio || '';
+                
+                if(config.avatar_url) {
+                    const av = document.getElementById('avatar');
+                    av.src = config.avatar_url;
+                    av.style.display = 'block';
+                }
+                
+                if(config.whatsapp_url) {
+                    const wa = document.getElementById('whatsapp');
+                    wa.href = config.whatsapp_url;
+                    wa.style.display = 'block';
+                }
+                
+                if(config.telegram_url) {
+                    const tg = document.getElementById('telegram');
+                    tg.href = config.telegram_url;
+                    tg.style.display = 'block';
+                }
+
+                // Рендерим галерею портфолио
+                if(photos.length > 0) {
+                    document.getElementById('port-title').style.display = 'block';
+                    const gallery = document.getElementById('gallery');
+                    photos.forEach(imgUrl => {
+                        const img = document.createElement('img');
+                        img.src = imgUrl;
+                        gallery.appendChild(img);
+                    });
+                }
+
+                // Убираем класс загрузки
+                document.getElementById('app').classList.remove('loading');
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('name').innerText = 'Ошибка загрузки данных';
+            });
+    </script>
+</body>
+</html>
