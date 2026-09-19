@@ -246,12 +246,10 @@
 
     document.querySelectorAll('.fade-up').forEach(element => observer.observe(element));
 
-    // СЮДА ВСТАВЬТЕ ССЫЛКУ НА ВАШ WEB APP SCRIPT
+    // Ваша рабочая ссылка на базу данных
     const GOOGLE_SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbxfPS-xLPDHe_3nXsmk15QAbD07lz6Oq-0gAn9m7Z0YVlMwod_9wve-JjPdkglis51y9w/exec';
 
     async function loadData() {
-        if(GOOGLE_SHEETS_API_URL === 'https://script.google.com/macros/s/AKfycbxfPS-xLPDHe_3nXsmk15QAbD07lz6Oq-0gAn9m7Z0YVlMwod_9wve-JjPdkglis51y9w/exec') return;
-        
         try {
             const response = await fetch(GOOGLE_SHEETS_API_URL);
             const data = await response.json();
