@@ -2,144 +2,330 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моя Визитка</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Алина Демидова - Мастер маникюра</title>
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: #f4f4f6; color: #111; display: flex; justify-content: center; padding: 20px; transition: background 0.3s; }
-        .container { max-width: 480px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; }
+        :root {
+            --bg-top: #ffe8cc;
+            --bg-bottom: #ffffff;
+            --btn-bg: #a7c784;
+            --btn-shadow: #2b412c;
+            --text-dark: #2e2e2e;
+            --text-accent: #60524b;
+        }
         
-        /* Стили визитки */
-        .avatar { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-top: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); background: #ddd; }
-        h1 { font-size: 22px; margin-top: 15px; font-weight: 700; }
-        .bio { font-size: 15px; margin: 10px 20px 25px 20px; opacity: 0.8; line-height: 1.4; }
-        
-        /* Кнопки */
-        .links-area { width: 100%; display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
-        .btn { width: 100%; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 16px; background: #fff; color: #111; box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: transform 0.2s; }
-        .btn:active { transform: scale(0.98); }
-        
-/* Портфолио и горизонтальный слайдер */
-.portfolio-title { font-size: 18px; font-weight: 700; margin-bottom: 15px; align-self: flex-start; padding-left: 5px; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-top);
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
 
-/* Контейнер слайдера с плавной прокруткой */
-.gallery { 
-    width: 100%; 
-    display: flex; 
-    gap: 12px; 
-    overflow-x: auto; 
-    scroll-snap-type: x mandatory;
-    padding-bottom: 15px;
-    /* Прячем стандартный некрасивый скроллбар в разных браузерах */
-    scrollbar-width: none; 
-}
-.gallery::-webkit-scrollbar { display: none; }
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--bg-top);
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            overflow-x: hidden;
+        }
 
-/* Стили для каждого слайда с фото */
-.gallery img { 
-    flex: 0 0 85%; /* Каждое фото занимает 85% ширины экрана, чтобы было видно край следующего */
-    width: 85%;
-    height: 350px; /* Фиксированная высота для аккуратности портфолио */
-    border-radius: 16px; 
-    object-fit: cover; 
-    scroll-snap-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
-    background: #eee; 
-}
+        .header-section {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+
+        h1 {
+            font-family: 'Advent Pro', sans-serif;
+            font-size: 32px;
+            text-transform: uppercase;
+            font-weight: 400;
+            margin: 0 0 5px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .links-container {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .action-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--btn-bg);
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid #143211;
+            box-shadow: 2px 2px 0 var(--btn-shadow);
+            transition: transform 0.2s;
+        }
+
+        .action-link:active {
+            transform: translateY(2px);
+            box-shadow: 0 0 0 var(--btn-shadow);
+        }
+
+        .action-link span {
+            font-size: 14px;
+        }
+
+        .action-link strong {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .white-section {
+            background-color: var(--bg-bottom);
+            padding: 40px 20px;
+            margin-top: 30px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        h2 {
+            font-family: 'Advent Pro', sans-serif;
+            text-align: center;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .about-text {
+            text-align: center;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .gallery-wrapper {
+            margin: 30px -20px;
+            padding: 0 20px;
+        }
         
-        /* Скелетон загрузки */
-        .loading { opacity: 0.5; pointer-events: none; }
+        .gallery-scroll {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        
+        .gallery-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-item {
+            flex: 0 0 80%;
+            scroll-snap-align: center;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .price-list {
+            background-color: var(--bg-top);
+            border: 1px solid #60524b;
+            border-radius: 10px;
+            padding: 20px;
+            color: var(--text-accent);
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed rgba(96, 82, 75, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
 
-    <div class="container loading" id="app">
-        <img id="avatar" class="avatar" src="" alt="Avatar" style="display:none;">
-        <h1 id="name">Загрузка...</h1>
-        <p id="bio" class="bio"></p>
-
-        <div class="links-area">
-            <a id="whatsapp" class="btn" href="#" style="display:none;">💬 Написать в ВК</a>
-            <a id="telegram" class="btn" href="#" style="display:none;">✈️ Наш Telegram</a>
-        </div>
-
-        <h2 id="port-title" class="portfolio-title" style="display:none;">Портфолио</h2>
-        <div id="gallery" class="gallery"></div>
+<div class="app-container">
+    <div class="header-section fade-up">
+        <h1 id="nameEl">Алина Демидова</h1>
+        <div class="subtitle" id="roleEl">Мастер маникюра</div>
+        <img id="avatarEl" src="https://i.taplink.st/a/a/5/6/6/e50e9b.jpg?5" alt="Аватар мастера" class="avatar">
     </div>
 
-    <script>
- // СЮДА ВСТАВЬТЕ ID СВОЕЙ ТАБЛИЦЫ
-        //const SPREADSHEET_ID = `1XF3E_4_VPrrz6lujOa4v4Hdvg8wQQWVxo2YwRZ1sHF0`; 
-        
-        // Ссылка для получения данных в формате JSON
-        const url = `https://docs.google.com/spreadsheets/d/1XF3E_4_VPrrz6lujOa4v4Hdvg8wQQWVxo2YwRZ1sHF0/gviz/tq?tqx=out:json`;
+    <div class="links-container fade-up" style="transition-delay: 0.1s;">
+        <a id="btn1" href="#" class="action-link" target="_blank">
+            <div>
+                <strong id="btn1Title">Напишите для записи</strong>
+                <span id="btn1Sub">Проконсультирую (ВК)</span>
+            </div>
+            <i>→</i>
+        </a>
+        <a id="btn2" href="#" class="action-link">
+            <div>
+                <strong id="btn2Title">Напишите для записи</strong>
+                <span id="btn2Sub">Проконсультирую (СМС)</span>
+            </div>
+            <i>→</i>
+        </a>
+    </div>
 
-        fetch(url)
-            .then(res => res.text())
-            .then(data => {
-                // Очищаем лишний текст от Google API, чтобы получить чистый JSON
-                const jsonString = data.substring(47, data.length - 2);
-                const json = JSON.parse(jsonString);
-                
-                // Переводим строки таблицы в удобный объект (ключ: значение)
-                const config = {};
-                const photos = [];
-                
-                json.table.rows.forEach(row => {
-                    const key = row.c[0] ? row.c[0].v : null;
-                    const value = row.c[1] ? row.c[1].v : '';
-                    if (key) {
-                        if (key.startsWith('photo_') && value) {
-                            photos.push(value);
-                        } else {
-                            config[key] = value;
-                        }
-                    }
+    <div class="white-section">
+        <div class="fade-up">
+            <h2 id="aboutTitle">О мастере</h2>
+            <p class="about-text" id="aboutText">Загрузка информации...</p>
+        </div>
+
+        <div class="gallery-wrapper fade-up">
+            <div class="gallery-scroll" id="galleryContainer">
+                <!-- Галерея загрузится сюда из таблицы -->
+            </div>
+        </div>
+
+        <div class="fade-up">
+            <h2 id="priceTitle">Прайс Лист</h2>
+            <div class="price-list" id="priceContainer">
+                <!-- Прайс загрузится сюда из таблицы -->
+                <div style="text-align:center;">Загрузка прайса...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Анимация элементов при скролле
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(element => observer.observe(element));
+
+    // СЮДА ВСТАВЬТЕ ССЫЛКУ НА ВАШ WEB APP SCRIPT
+    const GOOGLE_SHEETS_API_URL = 'ВСТАВЬТЕ_ВАШ_URL_СЮДА';
+
+    async function loadData() {
+        if(GOOGLE_SHEETS_API_URL === 'ВСТАВЬТЕ_ВАШ_URL_СЮДА') return;
+        
+        try {
+            const response = await fetch(GOOGLE_SHEETS_API_URL);
+            const data = await response.json();
+            
+            // Базовая информация
+            if(data.name) document.getElementById('nameEl').innerText = data.name;
+            if(data.role) document.getElementById('roleEl').innerText = data.role;
+            if(data.avatar_url) document.getElementById('avatarEl').src = data.avatar_url;
+            
+            // Кнопки
+            if(data.btn1_title) document.getElementById('btn1Title').innerText = data.btn1_title;
+            if(data.btn1_sub) document.getElementById('btn1Sub').innerText = data.btn1_sub;
+            if(data.btn1_url) document.getElementById('btn1').href = data.btn1_url;
+
+            if(data.btn2_title) document.getElementById('btn2Title').innerText = data.btn2_title;
+            if(data.btn2_sub) document.getElementById('btn2Sub').innerText = data.btn2_sub;
+            if(data.btn2_url) document.getElementById('btn2').href = data.btn2_url;
+
+            // Блок "О мастере"
+            if(data.about_title) document.getElementById('aboutTitle').innerText = data.about_title;
+            if(data.about_text) document.getElementById('aboutText').innerText = data.about_text;
+
+            // Галерея (динамическая генерация)
+            const galleryContainer = document.getElementById('galleryContainer');
+            let galleryIndex = 1;
+            let hasImages = false;
+            galleryContainer.innerHTML = ''; // Очищаем контейнер
+
+            while (data['gallery_img' + galleryIndex]) {
+                hasImages = true;
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.innerHTML = `<img src="${data['gallery_img' + galleryIndex]}" alt="Работа мастера ${galleryIndex}">`;
+                galleryContainer.appendChild(div);
+                galleryIndex++;
+            }
+            if (!hasImages) galleryContainer.parentElement.style.display = 'none';
+
+            // Прайс-лист (динамическая генерация)
+            if(data.price_title) document.getElementById('priceTitle').innerText = data.price_title;
+            const priceContainer = document.getElementById('priceContainer');
+            priceContainer.innerHTML = ''; // Очищаем контейнер
+
+            // Находим все ключи, оканчивающиеся на _name, и сортируем их по номерам
+            const priceKeys = Object.keys(data)
+                .filter(key => key.startsWith('price') && key.endsWith('_name'))
+                .sort((a, b) => {
+                    const numA = parseInt(a.match(/\d+/)[0]);
+                    const numB = parseInt(b.match(/\d+/)[0]);
+                    return numA - numB;
                 });
 
-                // Применяем данные на страницу
-                if(config.bg_color) document.body.style.backgroundColor = config.bg_color;
-                if(config.text_color) document.body.style.color = config.text_color;
+            priceKeys.forEach(nameKey => {
+                const num = nameKey.match(/\d+/)[0];
+                const valKey = `price${num}_val`;
                 
-                document.getElementById('name').innerText = config.name || 'Без имени';
-                document.getElementById('bio').innerText = config.bio || '';
-                
-                if(config.avatar_url) {
-                    const av = document.getElementById('avatar');
-                    av.src = config.avatar_url;
-                    av.style.display = 'block';
+                if (data[nameKey] && data[valKey]) {
+                    const div = document.createElement('div');
+                    div.className = 'price-item';
+                    div.innerHTML = `<span>${data[nameKey]}</span><strong>${data[valKey]}</strong>`;
+                    priceContainer.appendChild(div);
                 }
-                
-                if(config.whatsapp_url) {
-                    const wa = document.getElementById('whatsapp');
-                    wa.href = config.whatsapp_url;
-                    wa.style.display = 'block';
-                }
-                
-                if(config.telegram_url) {
-                    const tg = document.getElementById('telegram');
-                    tg.href = config.telegram_url;
-                    tg.style.display = 'block';
-                }
-
-                // Рендерим галерею портфолио
-                if(photos.length > 0) {
-                    document.getElementById('port-title').style.display = 'block';
-                    const gallery = document.getElementById('gallery');
-                    photos.forEach(imgUrl => {
-                        const img = document.createElement('img');
-                        img.src = imgUrl;
-                        gallery.appendChild(img);
-                    });
-                }
-
-                // Убираем класс загрузки
-                document.getElementById('app').classList.remove('loading');
-            })
-            .catch(err => {
-                console.error(err);
-                document.getElementById('name').innerText = 'Ошибка загрузки данных';
             });
-    </script>
+
+        } catch (error) {
+            console.error('Ошибка загрузки данных:', error);
+            document.getElementById('aboutText').innerText = 'Не удалось загрузить данные.';
+            document.getElementById('priceContainer').innerHTML = '<div style="text-align:center;">Ошибка загрузки</div>';
+        }
+    }
+
+    // Запуск функции получения данных
+    loadData();
+</script>
+
 </body>
 </html>
