@@ -2,488 +2,381 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Алина Демидова - Мастер маникюра</title>
-    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Подключение шрифтов от Google Fonts для красивых заголовков и текста -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cuprum:wght@400;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- 
+      БЛОК СТИЛЕЙ (CSS).
+      Здесь настраивается внешний вид сайта (цвета, отступы, размеры).
+      Если вы хотите изменить цвета, ищите их в блоке :root ниже.
+    -->
     <style>
         :root {
-            --bg-top: #ffe8cc;
-            --bg-bottom: #ffffff;
-            --btn-bg: #a7c784;
-            --btn-shadow: #2b412c;
-            --text-dark: #2e2e2e;
-            --text-accent: #60524b;
+            /* ОСНОВНЫЕ ЦВЕТА (вы можете менять коды цветов здесь) */
+            --bg-color: #fcebd7; /* Цвет фона всей страницы (светло-персиковый) */
+            --card-bg: #ffffff; /* Цвет фона центрального блока (белый) */
+            --btn-color: #a7c996; /* Цвет кнопок (зеленый) */
+            --price-bg: #f9e3cc; /* Цвет фона блока с прайсом */
+            --text-main: #333333; /* Основной цвет текста */
         }
-        
-        body, html {
+
+        body {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-top);
-            color: var(--text-dark);
-            scroll-behavior: smooth;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif; /* Шрифт для обычного текста */
+            display: flex;
+            justify-content: center; /* Центрируем сайт на экране компьютера */
         }
 
-        .app-container {
-            max-width: 480px;
-            margin: 0 auto;
-            background-color: var(--bg-top);
-            min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-            overflow-x: hidden;
+        /* Главный контейнер сайта (ограничиваем ширину, чтобы выглядело как на телефоне) */
+        .container {
+            width: 100%;
+            max-width: 480px; /* Максимальная ширина */
+            padding: 20px 15px;
+            box-sizing: border-box;
         }
 
-        .header-section {
+        /* --- Стили шапки (Имя, профессия, аватарка) --- */
+        .header {
             text-align: center;
-            padding: 40px 20px 20px;
+            margin-bottom: 20px;
         }
 
-        h1 {
-            font-family: 'Advent Pro', sans-serif;
-            font-size: 32px;
-            text-transform: uppercase;
+        .header h1 {
+            font-family: 'Cuprum', sans-serif; /* Шрифт для заголовков */
             font-weight: 400;
-            margin: 0 0 5px;
+            font-size: 32px;
+            margin: 0 0 5px 0;
+            letter-spacing: 1px;
         }
 
-        .subtitle {
-            font-size: 16px;
-            color: var(--text-dark);
-            margin-bottom: 30px;
+        .header p {
+            margin: 0 0 20px 0;
+            font-size: 14px;
+            color: #555;
         }
 
         .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%; /* Делает картинку круглой */
             object-fit: cover;
-            margin: 0 auto 20px;
-            display: block;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .links-container {
-            padding: 0 20px;
+        /* --- Стили кнопок связи --- */
+        .links-block {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px; /* Расстояние между кнопками */
+            margin-bottom: 25px;
         }
 
-        /* АНИМАЦИЯ ПУЛЬСАЦИИ КНОПОК */
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 2px 2px 0 var(--btn-shadow); }
-            50% { transform: scale(1.02); box-shadow: 4px 4px 5px rgba(43, 65, 44, 0.3); }
-            100% { transform: scale(1); box-shadow: 2px 2px 0 var(--btn-shadow); }
-        }
-
-        .action-link {
+        .btn-link {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            background-color: var(--btn-bg);
-            color: var(--text-dark);
+            align-items: center;
+            background-color: var(--btn-color);
+            color: #000;
             text-decoration: none;
             padding: 15px 20px;
             border-radius: 10px;
-            border: 1px solid #143211;
-            box-shadow: 2px 2px 0 var(--btn-shadow);
-            animation: pulse 2.5s infinite ease-in-out;
-            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #8eab80;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
         }
 
-        .action-link:hover, .action-link:active {
-            animation: none; /* Останавливаем пульсацию при наведении */
-            transform: translateY(2px);
-            box-shadow: 0 0 0 var(--btn-shadow);
+        .btn-link:active {
+            transform: scale(0.98); /* Эффект нажатия */
         }
 
-        .action-link span {
+        .btn-link .btn-text strong {
+            display: block;
             font-size: 14px;
         }
-
-        .action-link strong {
-            display: block;
-            font-size: 16px;
-            font-weight: 600;
+        
+        .btn-link .btn-text span {
+            font-size: 12px;
         }
 
-        .white-section {
-            background-color: var(--bg-bottom);
-            padding: 40px 20px;
-            margin-top: 30px;
-            border-radius: 20px 20px 0 0;
+        .btn-arrow {
+            font-size: 20px;
         }
 
-        h2 {
-            font-family: 'Advent Pro', sans-serif;
-            text-align: center;
+        /* --- Стили основного белого блока (О мастере, Галерея, Прайс) --- */
+        .main-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            font-family: 'Cuprum', sans-serif;
             font-size: 28px;
             font-weight: 400;
-            margin-bottom: 20px;
+            text-align: center;
+            margin: 0 0 20px 0;
             text-transform: uppercase;
         }
 
         .about-text {
-            text-align: center;
+            font-size: 14px;
             line-height: 1.5;
+            text-align: center;
             margin-bottom: 30px;
         }
 
-        /* ГАЛЕРЕЯ */
-        .gallery-wrapper {
-            margin: 30px -20px;
-            padding: 0 20px;
-        }
-        
-        .gallery-scroll {
+        /* --- Стили галереи --- */
+        .gallery {
             display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Для Firefox */
-            cursor: grab; /* Курсор для ПК */
-        }
-        
-        .gallery-scroll::-webkit-scrollbar {
-            display: none; /* Для Chrome/Safari */
+            gap: 10px;
+            overflow-x: auto; /* Добавляет горизонтальную прокрутку, если картинок много */
+            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
 
-        .gallery-scroll.grabbing {
-            cursor: grabbing;
-            scroll-snap-type: none; /* Отключаем прилипание во время перетаскивания */
-        }
+        /* Скрываем полосу прокрутки для красоты, но оставляем возможность листать */
+        .gallery::-webkit-scrollbar { display: none; }
+        .gallery { -ms-overflow-style: none; scrollbar-width: none; }
 
-        .gallery-item {
-            flex: 0 0 80%;
-            scroll-snap-align: center;
-            border-radius: 12px;
-            overflow: hidden;
-            pointer-events: none; /* Чтобы картинка не мешала перетаскиванию */
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
+        .gallery img {
+            height: 200px;
+            border-radius: 10px;
             object-fit: cover;
-            display: block;
+            flex-shrink: 0;
         }
 
-        /* ПРАЙС ЛИСТ */
-        .price-list {
-            background-color: var(--bg-top);
-            border: 1px solid #60524b;
+        /* --- Стили прайс-листа --- */
+        .price-container {
+            background-color: var(--price-bg);
+            border: 1px solid #d4c5b3;
             border-radius: 10px;
             padding: 20px;
-            color: var(--text-accent);
-            margin-bottom: 40px;
         }
 
-        .price-category-title {
-            font-family: 'Advent Pro', sans-serif;
+        .price-category {
+            font-family: 'Cuprum', sans-serif;
             font-size: 22px;
-            text-transform: uppercase;
-            text-align: center;
-            margin: 25px 0 15px;
             font-weight: 700;
-        }
-        
-        .price-category-title:first-child {
-            margin-top: 5px;
+            text-align: center;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
         }
 
-        .price-item {
+        .price-row {
             display: flex;
-            justify-content: space-between;
+            align-items: flex-end;
             margin-bottom: 12px;
-            border-bottom: 1px dashed rgba(96, 82, 75, 0.3);
-            padding-bottom: 5px;
-        }
-        .price-item:last-child { border-bottom: none; }
-
-        /* БЛОК "ПОЧЕМУ Я" */
-        .why-me-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-bottom: 40px;
+            font-size: 13px;
         }
 
-        .why-me-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 15px;
+        .price-name {
+            max-width: 70%;
         }
 
-        .why-me-icon {
-            flex-shrink: 0;
-            width: 32px;
-            height: 32px;
-            background-color: #586730;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
+        .price-dots {
+            flex-grow: 1; /* Заставляет точки занимать все свободное пространство */
+            border-bottom: 1px dotted #777;
+            margin: 0 5px;
+            position: relative;
+            top: -4px;
         }
 
-        /* БЛОК СОЦСЕТЕЙ */
-        .socials-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0 40px;
+        .price-value {
+            font-weight: 600;
+            white-space: nowrap; /* Чтобы цена и "р" не переносились на новую строку */
         }
 
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background-color: #495057;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: transform 0.2s, background-color 0.2s;
+        /* Разделитель между категориями прайса */
+        .price-divider {
+            height: 1px;
+            background: transparent;
+            margin: 20px 0;
         }
-
-        .social-link:active {
-            transform: scale(0.95);
-        }
-
-        .social-link svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        .fade-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-<div class="app-container">
-    <div class="header-section fade-up">
-        <h1 id="nameEl">Алина Демидова</h1>
-        <div class="subtitle" id="roleEl">Мастер маникюра</div>
-        <img id="avatarEl" src="https://i.taplink.st/a/a/5/6/6/e50e9b.jpg?5" alt="Аватар мастера" class="avatar">
-    </div>
+<div class="container">
 
-    <div class="links-container fade-up" style="transition-delay: 0.1s;">
-        <a id="btn1" href="#" class="action-link" target="_blank">
-            <div>
-                <strong id="btn1Title">Напишите для записи</strong>
-                <span id="btn1Sub">Проконсультирую (ВК)</span>
+    <!-- ==========================================
+         БЛОК 1: ШАПКА (ИМЯ И АВАТАРКА)
+         ========================================== -->
+    <header class="header">
+        <!-- ЧТОБЫ ИЗМЕНИТЬ ИМЯ: поменяйте текст между тегами <h1> и </h1> -->
+        <h1>АЛИНА ДОЧА ДЕМИДОВА</h1>
+        
+        <!-- ЧТОБЫ ИЗМЕНИТЬ ПРОФЕССИЮ: поменяйте текст между тегами <p> и </p> -->
+        <p>Мастер маникюра</p>
+        
+        <!-- ЧТОБЫ ИЗМЕНИТЬ АВАТАРКУ: 
+             Вставьте ссылку на ваше фото в атрибут src="...". 
+             Фото может лежать в той же папке (например, src="avatar.jpg") 
+             или быть ссылкой из интернета (как сейчас). -->
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Аватар" class="avatar">
+    </header>
+
+    <!-- ==========================================
+         БЛОК 2: КНОПКИ ДЛЯ СВЯЗИ (СОЦСЕТИ / МЕССЕНДЖЕРЫ)
+         ========================================== -->
+    <div class="links-block">
+        <!-- КНОПКА 1 (ВКонтакте) 
+             ЧТОБЫ ИЗМЕНИТЬ ССЫЛКУ: поменяйте значение href="ТУТ_ВАША_ССЫЛКА" -->
+        <a href="https://vk.com/ваша_страница" class="btn-link" target="_blank">
+            <div class="btn-text">
+                <!-- Текст на кнопке -->
+                <strong>НАПИШИТЕ ДЛЯ ЗАПИСИ</strong>
+                <span>Проконсультирую (ВК)</span>
             </div>
-            <i>→</i>
+            <!-- Стрелочка -->
+            <div class="btn-arrow">&rarr;</div>
         </a>
-        <a id="btn2" href="#" class="action-link">
-            <div>
-                <strong id="btn2Title">Напишите для записи</strong>
-                <span id="btn2Sub">Проконсультирую (СМС)</span>
+
+        <!-- КНОПКА 2 (СМС / WhatsApp / Telegram) 
+             Пример для WhatsApp: href="https://wa.me/79991234567"
+             Пример для Telegram: href="https://t.me/ваш_логин" -->
+        <a href="sms:+79991234567" class="btn-link">
+            <div class="btn-text">
+                <!-- Текст на кнопке -->
+                <strong>НАПИШИТЕ ДЛЯ ЗАПИСИ</strong>
+                <span>Проконсультирую (СМС)</span>
             </div>
-            <i>→</i>
+            <div class="btn-arrow">&rarr;</div>
         </a>
+        
+        <!-- ИНСТРУКЦИЯ: Если нужна третья кнопка, просто скопируйте весь блок <a href="..."> ... </a> сверху и вставьте сюда -->
     </div>
 
-    <div class="white-section">
-        <!-- О Мастере -->
-        <div class="fade-up">
-            <h2 id="aboutTitle">О мастере</h2>
-            <p class="about-text" id="aboutText">Загрузка информации...</p>
+    <!-- ==========================================
+         БЛОК 3: ОСНОВНОЙ КОНТЕНТ (БЕЛЫЙ ФОН)
+         ========================================== -->
+    <main class="main-card">
+        
+        <!-- === СЕКЦИЯ: О МАСТЕРЕ === -->
+        <h2 class="section-title">О МАСТЕРЕ</h2>
+        <!-- ЧТОБЫ ИЗМЕНИТЬ ТЕКСТ: напишите свой текст между тегами <p> и </p> -->
+        <p class="about-text">
+            Приветствую! Я Демидова Алина, мастер маникюра с опытом более 5 лет. Я предлагаю качественные услуги по уходу за ногтями и кожей рук. Доверьтесь мне и насладитесь результатом!
+        </p>
+
+        <!-- === СЕКЦИЯ: ГАЛЕРЕЯ КАРТИНОК === -->
+        <!-- Все картинки внутри этого блока будут выстраиваться в ряд и прокручиваться вбок -->
+        <div class="gallery">
+            <!-- КАРТИНКА 1 
+                 ЧТОБЫ ИЗМЕНИТЬ: меняйте ссылку в src="...". 
+                 Лучше использовать вертикальные фото. -->
+            <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Работа 1">
+            
+            <!-- КАРТИНКА 2 -->
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Работа 2">
+            
+            <!-- ИНСТРУКЦИЯ: ЧТОБЫ ДОБАВИТЬ НОВУЮ КАРТИНКУ, раскомментируйте (уберите <!-- и -->) или скопируйте строчку ниже: -->
+            <!-- <img src="ваша_картинка.jpg" alt="Работа 3"> -->
         </div>
 
-        <!-- Галерея -->
-        <div class="gallery-wrapper fade-up">
-            <div class="gallery-scroll" id="galleryContainer">
-                <!-- Сюда подгрузятся картинки -->
+        <!-- === СЕКЦИЯ: ПРАЙС-ЛИСТ === -->
+        <h2 class="section-title">ПРАЙС ЛИСТ</h2>
+        
+        <div class="price-container">
+            
+            <!-- КАТЕГОРИЯ 1: МАНИКЮР -->
+            <h3 class="price-category">МАНИКЮР</h3>
+            
+            <!-- Позиция прайса 1 -->
+            <div class="price-row">
+                <!-- Название услуги -->
+                <div class="price-name">Маникюр без покрытия</div>
+                <!-- Точки (заполняются автоматически) -->
+                <div class="price-dots"></div>
+                <!-- Цена -->
+                <div class="price-value">600р</div>
             </div>
-        </div>
 
-        <!-- Прайс Лист -->
-        <div class="fade-up">
-            <h2 id="priceTitle">Прайс Лист</h2>
-            <div class="price-list">
-                <div id="priceStatus" style="text-align:center;">Загрузка прайса...</div>
-                
-                <h3 class="price-category-title" id="titleMani" style="display:none;">Маникюр</h3>
-                <div id="manicureContainer"></div>
-                
-                <h3 class="price-category-title" id="titlePedi" style="display:none;">Педикюр</h3>
-                <div id="pedicureContainer"></div>
+            <!-- Позиция прайса 2 -->
+            <div class="price-row">
+                <div class="price-name">Маникюр + гель лак (длина 0-1см)</div>
+                <div class="price-dots"></div>
+                <div class="price-value">1300р</div>
             </div>
-        </div>
 
-        <!-- Почему Я? -->
-        <div class="fade-up">
-            <h2>Почему я?</h2>
-            <div class="why-me-list">
-                <div class="why-me-item">
-                    <div class="why-me-icon">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <span>Индивидуальный подход к каждому клиенту</span>
-                </div>
-                <div class="why-me-item">
-                    <div class="why-me-icon">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <span>Безопасность и стерильность в процессе работы</span>
-                </div>
-                <div class="why-me-item">
-                    <div class="why-me-icon">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <span>Эстетика и комфорт во время сеанса</span>
-                </div>
+            <!-- Позиция прайса 3 -->
+            <div class="price-row">
+                <div class="price-name">Маникюр + гель лак (длина 2 см)</div>
+                <div class="price-dots"></div>
+                <div class="price-value">1400р</div>
             </div>
-        </div>
 
-        <!-- Соцсети -->
-        <div class="fade-up">
-            <h2>Мои социальные сети</h2>
-            <div class="socials-container">
-                <!-- TikTok -->
-                <a href="https://www.tiktok.com/@alina03430" target="_blank" class="social-link">
-                    <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.12-3.44-3.17-3.61-5.45-.19-2.58.91-5.18 2.87-6.84 1.78-1.45 4.19-2.09 6.45-1.74v4.06c-1.04-.15-2.11-.06-3.07.39-1.29.56-2.29 1.77-2.48 3.19-.24 1.78 1 3.51 2.79 3.92 1.18.27 2.45.03 3.42-.69.87-.63 1.39-1.65 1.45-2.71.06-2.73.02-5.46.04-8.19V.02z"/></svg>
-                </a>
-                <!-- Telegram -->
-                <a href="https://t.me/+1zkn6iNrDGFlMDQy" target="_blank" class="social-link">
-                    <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.539.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.548.223l.188-2.85 5.18-4.686c.223-.195-.054-.298-.346-.104l-6.4 4.028-2.75-.86c-.598-.188-.61-.597.126-.886l10.76-4.148c.498-.19.94.116.79.811z"/></svg>
-                </a>
-                <!-- VK -->
-                <a href="https://vk.ru/alina_demido" target="_blank" class="social-link">
-                    <svg viewBox="0 0 24 24"><path d="M21.547 7.117c.189-.633.02-1.117-.892-1.117h-2.735c-.755 0-1.085.398-1.273.832 0 0-1.396 3.416-3.376 5.625-.632.633-.92.834-1.296.834-.189 0-.46-.201-.46-.774V7.117c0-.755-.218-1.102-1.428-1.102H7.214c-.63 0-1.01.468-1.01.916 0 .964 1.442 1.139 1.588 3.754v3.956c0 .957-.172 1.13-.548 1.13-.996 0-3.419-3.441-4.856-7.382-.29-.838-.585-1.185-1.348-1.185H-1.7c-.895 0-1.077.416-1.077.832 0 .736 1.104 5.161 5.642 11.521 3.023 4.335 7.24 6.756 11.05 6.756 2.294 0 2.576-.516 2.576-1.402v-3.238c0-.853.18-.89.654-.89.349 0 .953.175 2.36 1.543 1.611 1.611 1.88 2.587 3.013 2.587h2.735c.895 0 1.342-.447 1.084-1.332-.279-1.015-1.464-2.502-3.136-4.385-.884-.997-2.124-2.072-2.518-2.59-.536-.717-.38-.996 0-1.615 0 0 4.437-6.275 4.884-8.324z"/></svg>
-                </a>
+            <!-- Позиция прайса 4 -->
+            <div class="price-row">
+                <div class="price-name">Маникюр + гель лак (длина 3 см)</div>
+                <div class="price-dots"></div>
+                <div class="price-value">1500р</div>
             </div>
-        </div>
 
-    </div>
+            <!-- Позиция прайса 5 -->
+            <div class="price-row">
+                <div class="price-name">Наращивание ногтей</div>
+                <div class="price-dots"></div>
+                <div class="price-value">2200р</div>
+            </div>
+
+            <!-- Позиция прайса 6 -->
+            <div class="price-row">
+                <div class="price-name">Коррекция ногтей</div>
+                <div class="price-dots"></div>
+                <div class="price-value">1600р</div>
+            </div>
+
+            <!-- ИНСТРУКЦИЯ: Чтобы добавить новую услугу в маникюр, скопируйте блок <div class="price-row">...</div> целиком и вставьте сюда. -->
+
+
+            <!-- Отступ между категориями -->
+            <div class="price-divider"></div>
+
+
+            <!-- КАТЕГОРИЯ 2: ПЕДИКЮР -->
+            <h3 class="price-category">ПЕДИКЮР</h3>
+            
+            <!-- Позиция прайса 1 -->
+            <div class="price-row">
+                <div class="price-name">Педикюр полный без покрытия</div>
+                <div class="price-dots"></div>
+                <div class="price-value">1500р</div>
+            </div>
+
+            <!-- Позиция прайса 2 -->
+            <div class="price-row">
+                <div class="price-name">Педикюр полный + покрытие гель лаком</div>
+                <div class="price-dots"></div>
+                <div class="price-value">2000р</div>
+            </div>
+
+            <!-- Позиция прайса 3 -->
+            <div class="price-row">
+                <div class="price-name">Педикюр пальцы без покрытия</div>
+                <div class="price-dots"></div>
+                <div class="price-value">700р</div>
+            </div>
+
+            <!-- Позиция прайса 4 -->
+            <div class="price-row">
+                <div class="price-name">Педикюр пальцы + покрытие гель лаком</div>
+                <div class="price-dots"></div>
+                <div class="price-value">1200р</div>
+            </div>
+
+        </div> <!-- Конец price-container -->
+
+    </main>
 </div>
-
-<script>
-    // 1. Анимация при появлении на экране
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    document.querySelectorAll('.fade-up').forEach(element => observer.observe(element));
-
-    // 2. Логика перетаскивания галереи мышкой для ПК (Drag to scroll)
-    const slider = document.getElementById('galleryContainer');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        slider.classList.add('grabbing');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-    });
-    slider.addEventListener('mouseleave', () => { isDown = false; slider.classList.remove('grabbing'); });
-    slider.addEventListener('mouseup', () => { isDown = false; slider.classList.remove('grabbing'); });
-    slider.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2; // Скорость прокрутки
-        slider.scrollLeft = scrollLeft - walk;
-    });
-
-    // 3. Получение данных из Google Таблиц
-    const GOOGLE_SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbxfPS-xLPDHe_3nXsmk15QAbD07lz6Oq-0gAn9m7Z0YVlMwod_9wve-JjPdkglis51y9w/exec';
-
-    async function loadData() {
-        try {
-            const response = await fetch(GOOGLE_SHEETS_API_URL);
-            const data = await response.json();
-            
-            // Базовая инфа
-            if(data.name) document.getElementById('nameEl').innerText = data.name;
-            if(data.role) document.getElementById('roleEl').innerText = data.role;
-            if(data.avatar_url) document.getElementById('avatarEl').src = data.avatar_url;
-            
-            // Кнопки
-            if(data.btn1_title) document.getElementById('btn1Title').innerText = data.btn1_title;
-            if(data.btn1_sub) document.getElementById('btn1Sub').innerText = data.btn1_sub;
-            if(data.btn1_url) document.getElementById('btn1').href = data.btn1_url;
-
-            if(data.btn2_title) document.getElementById('btn2Title').innerText = data.btn2_title;
-            if(data.btn2_sub) document.getElementById('btn2Sub').innerText = data.btn2_sub;
-            if(data.btn2_url) document.getElementById('btn2').href = data.btn2_url;
-
-            if(data.about_title) document.getElementById('aboutTitle').innerText = data.about_title;
-            if(data.about_text) document.getElementById('aboutText').innerText = data.about_text;
-
-            // Галерея
-            let galleryIndex = 1;
-            let hasImages = false;
-            slider.innerHTML = ''; 
-
-            while (data['gallery_img' + galleryIndex]) {
-                hasImages = true;
-                const div = document.createElement('div');
-                div.className = 'gallery-item';
-                div.innerHTML = `<img src="${data['gallery_img' + galleryIndex]}" alt="Работа мастера ${galleryIndex}">`;
-                slider.appendChild(div);
-                galleryIndex++;
-            }
-            if (!hasImages) slider.parentElement.style.display = 'none';
-
-            // Разделение прайс-листа
-            if(data.price_title) document.getElementById('priceTitle').innerText = data.price_title;
-            document.getElementById('priceStatus').style.display = 'none'; // Скрываем надпись загрузки
-            
-            const maniContainer = document.getElementById('manicureContainer');
-            const pediContainer = document.getElementById('pedicureContainer');
-
-            const priceKeys = Object.keys(data)
-                .filter(key => key.startsWith('price') && key.endsWith('_name'))
-                .sort((a, b) => parseInt(a.match(/\d+/)[0]) - parseInt(b.match(/\d+/)[0]));
-
-            priceKeys.forEach(nameKey => {
-                const num = parseInt(nameKey.match(/\d+/)[0]);
-                const valKey = `price${num}_val`;
-                
-                if (data[nameKey] && data[valKey]) {
-                    const div = document.createElement('div');
-                    div.className = 'price-item';
-                    div.innerHTML = `<span>${data[nameKey]}</span><strong>${data[valKey]}</strong>`;
-                    
-                    // Позиции с 1 по 6 — это маникюр. Остальное — педикюр.
-                    if (num <= 6) {
-                        maniContainer.appendChild(div);
-                    } else {
-                        pediContainer.appendChild(div);
-                    }
-                }
-            });
-
-            // Показываем заголовки секций только если там есть элементы
-            if(maniContainer.children.length > 0) document.getElementById('titleMani').style.display = 'block';
-            if(pediContainer.children.length > 0) document.getElementById('titlePedi').style.display = 'block';
-
-        } catch (error) {
-            console.error('Ошибка загрузки данных:', error);
-            document.getElementById('aboutText').innerText = 'Не удалось загрузить данные.';
-            document.getElementById('priceStatus').innerText = 'Ошибка загрузки';
-        }
-    }
-
-    loadData();
-</script>
 
 </body>
 </html>
