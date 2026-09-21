@@ -5,201 +5,303 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Алина Демидова - Мастер маникюра</title>
     
-    <!-- Подключение шрифтов от Google Fonts для красивых заголовков и текста -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cuprum:wght@400;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Подключение шрифтов Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@400;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Подключение Font Awesome для иконок соцсетей -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- 
-      БЛОК СТИЛЕЙ (CSS).
-      Здесь настраивается внешний вид сайта (цвета, отступы, размеры).
-      Если вы хотите изменить цвета, ищите их в блоке :root ниже.
-    -->
     <style>
+        /* =========================================
+           БАЗОВЫЕ НАСТРОЙКИ (ЦВЕТА И ШРИФТЫ)
+           ========================================= */
         :root {
-            /* ОСНОВНЫЕ ЦВЕТА (вы можете менять коды цветов здесь) */
-            --bg-color: #1488db; /* Цвет фона всей страницы (светло-персиковый) */
-            --card-bg: #ffffff; /* Цвет фона центрального блока (белый) */
-            --btn-color: #a7c996; /* Цвет кнопок (зеленый) */
-            --price-bg: #f9e3cc; /* Цвет фона блока с прайсом */
-            --text-main: #333333; /* Основной цвет текста */
+            --bg-color: #fcecd7;
+            --card-bg: #ffffff;
+            --btn-bg: #adc996;
+            --text-main: #333333;
+            --text-muted: #555555;
         }
 
         body {
             margin: 0;
-            padding: 0;
+            padding: 20px 0;
             background-color: var(--bg-color);
+            font-family: 'Montserrat', sans-serif;
             color: var(--text-main);
-            font-family: 'Montserrat', sans-serif; /* Шрифт для обычного текста */
             display: flex;
-            justify-content: center; /* Центрируем сайт на экране компьютера */
+            justify-content: center;
         }
 
-        /* Главный контейнер сайта (ограничиваем ширину, чтобы выглядело как на телефоне) */
         .container {
             width: 100%;
-            max-width: 480px; /* Максимальная ширина */
-            padding: 20px 15px;
+            max-width: 480px;
+            padding: 0 15px;
             box-sizing: border-box;
         }
 
-        /* --- Стили шапки (Имя, профессия, аватарка) --- */
+        /* =========================================
+           ШАПКА: ИМЯ, ПРОФЕССИЯ, АВАТАРКА
+           ========================================= */
         .header {
             text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .header h1 {
-            font-family: 'Cuprum', sans-serif; /* Шрифт для заголовков */
-            font-weight: 400;
-            font-size: 32px;
-            margin: 0 0 5px 0;
-            letter-spacing: 1px;
-        }
-
-        .header p {
-            margin: 0 0 20px 0;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .avatar {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%; /* Делает картинку круглой */
-            object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        /* --- Стили кнопок связи --- */
-        .links-block {
-            display: flex;
-            flex-direction: column;
-            gap: 12px; /* Расстояние между кнопками */
             margin-bottom: 25px;
         }
 
-        .btn-link {
+        .header h1 {
+            font-family: 'Jura', sans-serif;
+            font-size: 26px;
+            font-weight: 400;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            margin: 0 0 15px 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* =========================================
+           КНОПКИ СВЯЗИ С АНИМАЦИЕЙ
+           ========================================= */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+            50% { transform: scale(1.03); box-shadow: 0 8px 15px rgba(173, 201, 150, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        }
+
+        .btn {
+            background-color: var(--btn-bg);
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #92b07c;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: var(--btn-color);
-            color: #000;
-            text-decoration: none;
-            padding: 15px 20px;
-            border-radius: 10px;
-            border: 1px solid #8eab80;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-            transition: transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+            animation: pulse 2.5s infinite;
         }
 
-        .btn-link:active {
-            transform: scale(0.98); /* Эффект нажатия */
+        .btn:hover {
+            background-color: #9dbb85;
+            animation: none;
+            transform: scale(1.02);
+            transition: all 0.2s;
         }
 
-        .btn-link .btn-text strong {
-            display: block;
+        .btn-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btn-title {
+            font-weight: 600;
             font-size: 14px;
         }
-        
-        .btn-link .btn-text span {
+
+        .btn-subtitle {
             font-size: 12px;
+            opacity: 0.8;
+            margin-top: 3px;
         }
 
         .btn-arrow {
             font-size: 20px;
+            font-weight: 300;
         }
 
-        /* --- Стили основного белого блока (О мастере, Галерея, Прайс) --- */
-        .main-card {
+        /* =========================================
+           БЕЛЫЙ БЛОК: О МАСТЕРЕ, ГАЛЕРЕЯ, ПРАЙС
+           ========================================= */
+        .content-card {
             background-color: var(--card-bg);
             border-radius: 20px;
             padding: 30px 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
         .section-title {
-            font-family: 'Cuprum', sans-serif;
-            font-size: 28px;
-            font-weight: 400;
+            font-family: 'Jura', sans-serif;
             text-align: center;
-            margin: 0 0 20px 0;
+            font-size: 22px;
+            font-weight: 400;
             text-transform: uppercase;
+            margin: 0 0 15px 0;
+        }
+
+        .section-title.mt-40 {
+            margin-top: 40px;
+            margin-bottom: 25px;
         }
 
         .about-text {
+            text-align: center;
             font-size: 14px;
             line-height: 1.5;
-            text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-        /* --- Стили галереи --- */
+        /* --- ГАЛЕРЕЯ --- */
         .gallery {
             display: flex;
             gap: 10px;
-            overflow-x: auto; /* Добавляет горизонтальную прокрутку, если картинок много */
-            padding-bottom: 10px;
             margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 10px;
         }
-
-        /* Скрываем полосу прокрутки для красоты, но оставляем возможность листать */
-        .gallery::-webkit-scrollbar { display: none; }
-        .gallery { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .gallery::-webkit-scrollbar {
+            display: none; 
+        }
 
         .gallery img {
             height: 200px;
-            border-radius: 10px;
+            border-radius: 12px;
             object-fit: cover;
-            flex-shrink: 0;
         }
 
-        /* --- Стили прайс-листа --- */
-        .price-container {
-            background-color: var(--price-bg);
-            border: 1px solid #d4c5b3;
+        .gallery img:first-child { flex: 0 0 60%; }
+        .gallery img:not(:first-child) { flex: 0 0 40%; }
+
+        /* --- ПРАЙС ЛИСТ --- */
+        .price-list {
+            background-color: #f6e6d1;
             border-radius: 10px;
-            padding: 20px;
+            padding: 20px 15px;
+            border: 1px solid #e8d5bc;
         }
 
         .price-category {
-            font-family: 'Cuprum', sans-serif;
-            font-size: 22px;
-            font-weight: 700;
+            font-family: 'Jura', sans-serif;
             text-align: center;
-            margin: 0 0 15px 0;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 15px 0 10px 0;
             text-transform: uppercase;
         }
 
+        .price-category:first-child { margin-top: 0; }
+
         .price-row {
             display: flex;
+            justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-size: 13px;
         }
 
         .price-name {
-            max-width: 70%;
-        }
-
-        .price-dots {
-            flex-grow: 1; /* Заставляет точки занимать все свободное пространство */
-            border-bottom: 1px dotted #777;
-            margin: 0 5px;
+            flex-grow: 1;
             position: relative;
-            top: -4px;
+            padding-right: 10px;
+        }
+        .price-name::after {
+            content: "";
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 10px;
+            border-bottom: 1px dotted #ccc;
+            z-index: 1;
+        }
+        .price-name span {
+            background-color: #f6e6d1;
+            position: relative;
+            z-index: 2;
+            padding-right: 5px;
         }
 
-        .price-value {
+        .price-val {
             font-weight: 600;
-            white-space: nowrap; /* Чтобы цена и "р" не переносились на новую строку */
+            position: relative;
+            z-index: 2;
+            background-color: #f6e6d1;
+            padding-left: 5px;
         }
 
-        /* Разделитель между категориями прайса */
-        .price-divider {
-            height: 1px;
-            background: transparent;
-            margin: 20px 0;
+        /* =========================================
+           БЛОК: ПОЧЕМУ Я
+           ========================================= */
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 40px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .feature-icon {
+            color: #586730;
+            min-width: 34px;
+            height: 34px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .feature-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        /* =========================================
+           БЛОК: СОЦИАЛЬНЫЕ СЕТИ (FONT AWESOME)
+           ========================================= */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .social-icon {
+            background-color: #495057; 
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            font-size: 24px; /* Размер иконки Font Awesome */
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+            background-color: #383d42;
         }
     </style>
 </head>
@@ -208,174 +310,126 @@
 <div class="container">
 
     <!-- ==========================================
-         БЛОК 1: ШАПКА (ИМЯ И АВАТАРКА)
+         БЛОК 1: ШАПКА ПРОФИЛЯ
          ========================================== -->
-    <header class="header">
-        <!-- ЧТОБЫ ИЗМЕНИТЬ ИМЯ: поменяйте текст между тегами <h1> и </h1> -->
-        <h1>АЛИНА ДЕМИДОВА</h1>
-        
-        <!-- ЧТОБЫ ИЗМЕНИТЬ ПРОФЕССИЮ: поменяйте текст между тегами <p> и </p> -->
+    <div class="header">
+        <h1>Алина доча Демидова</h1>
         <p>Мастер маникюра</p>
-        
-        <!-- ЧТОБЫ ИЗМЕНИТЬ АВАТАРКУ: 
-             Вставьте ссылку на ваше фото в атрибут src="...". 
-             Фото может лежать в той же папке (например, src="avatar.jpg") 
-             или быть ссылкой из интернета (как сейчас). -->
-        <img src="https://sun9-72.vkuserphoto.ru/s/v1/ig2/OLQVSatAxS0whGFpSXEqcgncQVzan8SvfYEx2R7AEuomAhOBWoj5IWf9PLa0RH0oV3OK5l3AgsrLPueHJ7nDCEAy.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440&from=bu&u=3RajPk2_d7ivughTmUP1LG3Qi1mJmNluBZuJj8TddT8&cs=1080x0" alt="Аватар" class="avatar">
-    </header>
-
-    <!-- ==========================================
-         БЛОК 2: КНОПКИ ДЛЯ СВЯЗИ (СОЦСЕТИ / МЕССЕНДЖЕРЫ)
-         ========================================== -->
-    <div class="links-block">
-        <!-- КНОПКА 1 (ВКонтакте) 
-             ЧТОБЫ ИЗМЕНИТЬ ССЫЛКУ: поменяйте значение href="ТУТ_ВАША_ССЫЛКА" -->
-        <a href="https://vk.com/ваша_страница" class="btn-link" target="_blank">
-            <div class="btn-text">
-                <!-- Текст на кнопке -->
-                <strong>НАПИШИТЕ ДЛЯ ЗАПИСИ</strong>
-                <span>Проконсультирую (ВК)</span>
-            </div>
-            <!-- Стрелочка -->
-            <div class="btn-arrow">&rarr;</div>
-        </a>
-
-        <!-- КНОПКА 2 (СМС / WhatsApp / Telegram) 
-             Пример для WhatsApp: href="https://wa.me/79991234567"
-             Пример для Telegram: href="https://t.me/ваш_логин" -->
-        <a href="sms:+79991234567" class="btn-link">
-            <div class="btn-text">
-                <!-- Текст на кнопке -->
-                <strong>НАПИШИТЕ ДЛЯ ЗАПИСИ</strong>
-                <span>Проконсультирую (СМС)</span>
-            </div>
-            <div class="btn-arrow">&rarr;</div>
-        </a>
-        
-        <!-- ИНСТРУКЦИЯ: Если нужна третья кнопка, просто скопируйте весь блок <a href="..."> ... </a> сверху и вставьте сюда -->
+        <img src="https://sun9-72.vkuserphoto.ru/s/v1/ig2/OLQVSatAxS0whGFpSXEqcgncQVzan8SvfYEx2R7AEuomAhOBWoj5IWf9PLa0RH0oV3OK5l3AgsrLPueHJ7nDCEAy.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440&from=bu&cs=1080x0" alt="Аватар" class="avatar">
     </div>
 
     <!-- ==========================================
-         БЛОК 3: ОСНОВНОЙ КОНТЕНТ (БЕЛЫЙ ФОН)
+         БЛОК 2: КНОПКИ ЗАПИСИ
          ========================================== -->
-    <main class="main-card">
+    <div class="action-buttons">
         
-        <!-- === СЕКЦИЯ: О МАСТЕРЕ === -->
+        <a href="https://vk.ru/alina_demido" class="btn" target="_blank">
+            <div class="btn-text">
+                <span class="btn-title">НАПИШИТЕ ДЛЯ ЗАПИСИ</span>
+                <span class="btn-subtitle">Проконсультирую (ВК)</span>
+            </div>
+            <span class="btn-arrow">→</span>
+        </a>
+
+        <a href="sms:+79880851217?body=Хочу записаться" class="btn">
+            <div class="btn-text">
+                <span class="btn-title">НАПИШИТЕ ДЛЯ ЗАПИСИ</span>
+                <span class="btn-subtitle">Проконсультирую (СМС)</span>
+            </div>
+            <span class="btn-arrow">→</span>
+        </a>
+
+    </div>
+
+    <!-- ==========================================
+         БЛОК 3: ОСНОВНОЙ КОНТЕНТ
+         ========================================== -->
+    <div class="content-card">
+        
         <h2 class="section-title">О МАСТЕРЕ</h2>
-        <!-- ЧТОБЫ ИЗМЕНИТЬ ТЕКСТ: напишите свой текст между тегами <p> и </p> -->
         <p class="about-text">
             Приветствую! Я Демидова Алина, мастер маникюра с опытом более 5 лет. Я предлагаю качественные услуги по уходу за ногтями и кожей рук. Доверьтесь мне и насладитесь результатом!
         </p>
 
-        <!-- === СЕКЦИЯ: ГАЛЕРЕЯ КАРТИНОК === -->
-        <!-- Все картинки внутри этого блока будут выстраиваться в ряд и прокручиваться вбок -->
         <div class="gallery">
-            <!-- КАРТИНКА 1 
-                 ЧТОБЫ ИЗМЕНИТЬ: меняйте ссылку в src="...". 
-                 Лучше использовать вертикальные фото. -->
-            <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Работа 1">
-            
-            <!-- КАРТИНКА 2 -->
-            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Работа 2">
-            
-            <!-- ИНСТРУКЦИЯ: ЧТОБЫ ДОБАВИТЬ НОВУЮ КАРТИНКУ, раскомментируйте (уберите <!-- и -->) или скопируйте строчку ниже: -->
-            <!-- <img src="ваша_картинка.jpg" alt="Работа 3"> -->
+            <img src="https://sun9-34.vkuserphoto.ru/s/v1/ig2/hmIeo6ep4QrEvmpJTJkME7ohhM6ibhjv8UZCPDs6E4OLCNAEzTrok-sWb1WmVL8v27preMmwWfads7Xw0tvK6FG1.jpg?quality=95&as=32x38,48x56,72x85,108x127,160x188,240x282,360x423,480x565,540x635,640x753,720x847,1080x1270,1280x1506,1440x1694&from=bu&cs=1280x0" alt="Работа 1">
+            <img src="https://sun9-49.vkuserphoto.ru/s/v1/ig2/8ejavY3M-d4CICPTi7UIPU81T9qChWfv_5nCEOWptuCjGxCRec2q51UzPt0jdRRwWvja1srVJgCSLKh8TuNAfzK2.jpg?quality=95&crop=0,0,1920,2560&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1280x1707,1440x1920,1920x2560&from=bu&cs=1280x0" alt="Работа 2">
+            <img src="https://sun9-62.vkuserphoto.ru/s/v1/ig2/GjRu__UveLIN_pLwu2YJcFVQNxHCFAuieP7jimkgXlm-FYAtRn9BPt85F_toVi-Scz8P6dQ5dIdeo--GfbaklLyz.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440&from=bu&cs=1080x0" alt="Работа 3">
         </div>
 
-        <!-- === СЕКЦИЯ: ПРАЙС-ЛИСТ === -->
         <h2 class="section-title">ПРАЙС ЛИСТ</h2>
+        <div class="price-list">
+            
+            <div class="price-category">МАНИКЮР</div>
+            
+            <div class="price-row"><div class="price-name"><span>Маникюр без покрытия</span></div><div class="price-val">600р</div></div>
+            <div class="price-row"><div class="price-name"><span>Маникюр + гель лак (длинна 0-1см)</span></div><div class="price-val">1300р</div></div>
+            <div class="price-row"><div class="price-name"><span>Маникюр + гель лак (длинна 2 см)</span></div><div class="price-val">1400р</div></div>
+            <div class="price-row"><div class="price-name"><span>Маникюр + гель лак (длинна 3 см)</span></div><div class="price-val">1500р</div></div>
+            <div class="price-row"><div class="price-name"><span>Наращивание ногтей</span></div><div class="price-val">2200р</div></div>
+            <div class="price-row"><div class="price-name"><span>Коррекция ногтей</span></div><div class="price-val">1600р</div></div>
+
+            <div class="price-category" style="margin-top: 20px;">ПЕДИКЮР</div>
+
+            <div class="price-row"><div class="price-name"><span>Педикюр полный без покрытия</span></div><div class="price-val">1500р</div></div>
+            <div class="price-row"><div class="price-name"><span>Педикюр полный + покрытие гель лаком</span></div><div class="price-val">2000р</div></div>
+            <div class="price-row"><div class="price-name"><span>Педикюр пальцы без покрытия</span></div><div class="price-val">700р</div></div>
+            <div class="price-row"><div class="price-name"><span>Педикюр пальцы + покрытие гель лаком</span></div><div class="price-val">1200р</div></div>
+
+        </div>
+
+        <h2 class="section-title mt-40">ПОЧЕМУ Я?</h2>
         
-        <div class="price-container">
+        <div class="features-list">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2c-.218 0 -.432 .002 -.642 .005l-.616 .017l-.299 .013l-.579 .034l-.553 .046c-4.785 .464 -6.732 2.411 -7.196 7.196l-.046 .553l-.034 .579c-.005 .098 -.01 .198 -.013 .299l-.017 .616l-.004 .318l-.001 .324c0 .218 .002 .432 .005 .642l.017 .616l.013 .299l.034 .579l.046 .553c.464 4.785 2.411 6.732 7.196 7.196l.553 .046l.579 .034c.098 .005 .198 .01 .299 .013l.616 .017l.318 .004l.324 .001c.218 0 .432 -.002 .642 -.005l.616 -.017l.299 -.013l.579 -.034l.553 -.046c4.785 -.464 6.732 -2.411 7.196 -7.196l.046 -.553l.034 -.579c.005 -.098 .01 -.198 .013 -.299l.017 -.616l.004 -.318l.001 -.324c0 -.218 -.002 -.432 -.005 -.642l-.017 -.616l-.013 -.299l-.034 -.579l-.046 -.553c-.464 -4.785 -2.411 -6.732 -7.196 -7.196l-.553 -.046l-.579 -.034a28.058 28.058 0 0 0 -.299 -.013l-.616 -.017l-.318 -.004l-.324 -.001zm5.207 7.293a1 1 0 0 1 0 1.414l-6.5 6.5a1 1 0 0 1 -1.414 0l-3 -3a1 1 0 0 1 1.414 -1.414l2.293 2.293l5.793 -5.793a1 1 0 0 1 1.414 0z"/>
+                    </svg>
+                </div>
+                <div class="feature-text">Индивидуальный подход к каждому клиенту</div>
+            </div>
             
-            <!-- КАТЕГОРИЯ 1: МАНИКЮР -->
-            <h3 class="price-category">МАНИКЮР</h3>
-            
-            <!-- Позиция прайса 1 -->
-            <div class="price-row">
-                <!-- Название услуги -->
-                <div class="price-name">Маникюр без покрытия</div>
-                <!-- Точки (заполняются автоматически) -->
-                <div class="price-dots"></div>
-                <!-- Цена -->
-                <div class="price-value">600р</div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2c-.218 0 -.432 .002 -.642 .005l-.616 .017l-.299 .013l-.579 .034l-.553 .046c-4.785 .464 -6.732 2.411 -7.196 7.196l-.046 .553l-.034 .579c-.005 .098 -.01 .198 -.013 .299l-.017 .616l-.004 .318l-.001 .324c0 .218 .002 .432 .005 .642l.017 .616l.013 .299l.034 .579l.046 .553c.464 4.785 2.411 6.732 7.196 7.196l.553 .046l.579 .034c.098 .005 .198 .01 .299 .013l.616 .017l.318 .004l.324 .001c.218 0 .432 -.002 .642 -.005l.616 -.017l.299 -.013l.579 -.034l.553 -.046c4.785 -.464 6.732 -2.411 7.196 -7.196l.046 -.553l.034 -.579c.005 -.098 .01 -.198 .013 -.299l.017 -.616l.004 -.318l.001 -.324c0 -.218 -.002 -.432 -.005 -.642l-.017 -.616l-.013 -.299l-.034 -.579l-.046 -.553c-.464 -4.785 -2.411 -6.732 -7.196 -7.196l-.553 -.046l-.579 -.034a28.058 28.058 0 0 0 -.299 -.013l-.616 -.017l-.318 -.004l-.324 -.001zm5.207 7.293a1 1 0 0 1 0 1.414l-6.5 6.5a1 1 0 0 1 -1.414 0l-3 -3a1 1 0 0 1 1.414 -1.414l2.293 2.293l5.793 -5.793a1 1 0 0 1 1.414 0z"/>
+                    </svg>
+                </div>
+                <div class="feature-text">Безопасность и стерильность в процессе работы</div>
             </div>
 
-            <!-- Позиция прайса 2 -->
-            <div class="price-row">
-                <div class="price-name">Маникюр + гель лак (длина 0-1см)</div>
-                <div class="price-dots"></div>
-                <div class="price-value">1300р</div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2c-.218 0 -.432 .002 -.642 .005l-.616 .017l-.299 .013l-.579 .034l-.553 .046c-4.785 .464 -6.732 2.411 -7.196 7.196l-.046 .553l-.034 .579c-.005 .098 -.01 .198 -.013 .299l-.017 .616l-.004 .318l-.001 .324c0 .218 .002 .432 .005 .642l.017 .616l.013 .299l.034 .579l.046 .553c.464 4.785 2.411 6.732 7.196 7.196l.553 .046l.579 .034c.098 .005 .198 .01 .299 .013l.616 .017l.318 .004l.324 .001c.218 0 .432 -.002 .642 -.005l.616 -.017l.299 -.013l.579 -.034l.553 -.046c4.785 -.464 6.732 -2.411 7.196 -7.196l.046 -.553l.034 -.579c.005 -.098 .01 -.198 .013 -.299l.017 -.616l.004 -.318l.001 -.324c0 -.218 -.002 -.432 -.005 -.642l-.017 -.616l-.013 -.299l-.034 -.579l-.046 -.553c-.464 -4.785 -2.411 -6.732 -7.196 -7.196l-.553 -.046l-.579 -.034a28.058 28.058 0 0 0 -.299 -.013l-.616 -.017l-.318 -.004l-.324 -.001zm5.207 7.293a1 1 0 0 1 0 1.414l-6.5 6.5a1 1 0 0 1 -1.414 0l-3 -3a1 1 0 0 1 1.414 -1.414l2.293 2.293l5.793 -5.793a1 1 0 0 1 1.414 0z"/>
+                    </svg>
+                </div>
+                <div class="feature-text">Эстетика и комфорт во время сеанса</div>
             </div>
+        </div>
 
-            <!-- Позиция прайса 3 -->
-            <div class="price-row">
-                <div class="price-name">Маникюр + гель лак (длина 2 см)</div>
-                <div class="price-dots"></div>
-                <div class="price-value">1400р</div>
-            </div>
+        <h2 class="section-title mt-40">МОИ СОЦИАЛЬНЫЕ СЕТИ</h2>
+        
+        <div class="social-links">
+            <!-- TikTok -->
+            <a href="https://vk.ru/away.php?to=https%3A%2F%2Fwww.tiktok.com%2F%40alina03430%3F_r%3D1%26_t%3DZS-99o6Lg4cXQr&utf=1" class="social-icon" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
 
-            <!-- Позиция прайса 4 -->
-            <div class="price-row">
-                <div class="price-name">Маникюр + гель лак (длина 3 см)</div>
-                <div class="price-dots"></div>
-                <div class="price-value">1500р</div>
-            </div>
+            <!-- Telegram -->
+            <a href="https://telegram.me/+1zkn6iNrDGFlMDQy" class="social-icon" target="_blank">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
 
-            <!-- Позиция прайса 5 -->
-            <div class="price-row">
-                <div class="price-name">Наращивание ногтей</div>
-                <div class="price-dots"></div>
-                <div class="price-value">2200р</div>
-            </div>
+            <!-- VK -->
+            <a href="https://vk.ru/alina_demido" class="social-icon" target="_blank">
+                <i class="fab fa-vk"></i>
+            </a>
+        </div>
+        
+    </div> 
 
-            <!-- Позиция прайса 6 -->
-            <div class="price-row">
-                <div class="price-name">Коррекция ногтей</div>
-                <div class="price-dots"></div>
-                <div class="price-value">1600р</div>
-            </div>
-
-            <!-- ИНСТРУКЦИЯ: Чтобы добавить новую услугу в маникюр, скопируйте блок <div class="price-row">...</div> целиком и вставьте сюда. -->
-
-
-            <!-- Отступ между категориями -->
-            <div class="price-divider"></div>
-
-
-            <!-- КАТЕГОРИЯ 2: ПЕДИКЮР -->
-            <h3 class="price-category">ПЕДИКЮР</h3>
-            
-            <!-- Позиция прайса 1 -->
-            <div class="price-row">
-                <div class="price-name">Педикюр полный без покрытия</div>
-                <div class="price-dots"></div>
-                <div class="price-value">1500р</div>
-            </div>
-
-            <!-- Позиция прайса 2 -->
-            <div class="price-row">
-                <div class="price-name">Педикюр полный + покрытие гель лаком</div>
-                <div class="price-dots"></div>
-                <div class="price-value">2000р</div>
-            </div>
-
-            <!-- Позиция прайса 3 -->
-            <div class="price-row">
-                <div class="price-name">Педикюр пальцы без покрытия</div>
-                <div class="price-dots"></div>
-                <div class="price-value">700р</div>
-            </div>
-
-            <!-- Позиция прайса 4 -->
-            <div class="price-row">
-                <div class="price-name">Педикюр пальцы + покрытие гель лаком</div>
-                <div class="price-dots"></div>
-                <div class="price-value">1200р</div>
-            </div>
-
-        </div> <!-- Конец price-container -->
-
-    </main>
 </div>
 
 </body>
